@@ -19,7 +19,7 @@ def can_make_target2(arr, target):
         if a in looking_for:
             return True
         else:
-            looking_for.append(target - a)
+            looking_for.add(target - a)
     return False
 
 

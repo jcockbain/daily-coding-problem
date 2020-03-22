@@ -1,3 +1,3 @@
-# daily-coding-problems
+# daily-coding-problem
 
-Solutions to daily coding problems, released by https://www.dailycodingproblem.com/.
+Solutions to daily coding problem, released by https://www.dailycodingproblem.com/.

@@ -13,8 +13,7 @@ def multiply_all_others(arr):
         result[i] = v
     return result
 
-# O(N)
-
+# O(N) - with division
 
 def multiply_all_others2(arr):
     result = []
@@ -26,7 +25,6 @@ def multiply_all_others2(arr):
             result.append(total / arr[i])
     return result
 
-
 def product(arr):
     result = 1
     for a in arr:
@@ -36,6 +34,34 @@ def product(arr):
 
 def remove_element(arr, i):
     return arr[:i] + arr[i + 1:]
+
+# O(N) - No divison
+
+def multiply_all_others3(arr):
+    sums_before = []
+    for num in arr:
+        if sums_before:
+            sums_before.append(sums_before[-1] * num)
+        else:
+            sums_before.append(num)
+
+    sums_after = []
+    for num in reversed(arr):
+        if sums_after:
+            sums_after.append(sums_after[-1] * num)
+        else:
+            sums_after.append(num)
+    sums_after = list(reversed(sums_after))
+
+    result = []
+    for i in range(len(arr)):
+        if i == 0:
+            result.append(sums_after[i + 1])
+        elif i == len(arr) - 1:
+            result.append(sums_before[i - 1])
+        else:
+            result.append(sums_before[i - 1] * sums_after[i + 1])
+    return result
 
 
 class test(unittest.TestCase):
@@ -55,6 +81,10 @@ class test(unittest.TestCase):
         self.assertEqual(multiply_all_others2(arr1), exp1)
         self.assertEqual(multiply_all_others2(arr2), exp2)
         self.assertEqual(multiply_all_others2(arr3), exp3)
+
+        self.assertEqual(multiply_all_others3(arr1), exp1)
+        self.assertEqual(multiply_all_others3(arr2), exp2)
+        self.assertEqual(multiply_all_others3(arr3), exp3)
 
 
 if __name__ == "__main__":

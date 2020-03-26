@@ -11,17 +11,15 @@ def first_pos(arr):
         i += 1
     return None
 
-
 # O(N) average case - O(N) Space
 
+
 def first_pos2(arr):
-    values = set()
-    for a in arr:
-        values.add(a)
-    for i in range(1, len(arr) + 2):
-        if i not in values:
-            return i
-    return None
+    s = set(arr)
+    i = 1
+    while i in s:
+        i + 1
+    return i
 
 
 class test(unittest.TestCase):

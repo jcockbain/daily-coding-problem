@@ -22,11 +22,3 @@ def count_unival(root):
 
     traverse(root)
     return count
-
-
-def printTree(node):
-    if node.left:
-        printTree(node.left)
-    print(node.val)
-    if node.right:
-        printTree(node.right)

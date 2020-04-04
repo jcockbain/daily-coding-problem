@@ -1,6 +1,3 @@
-import unittest
-
-
 # O(2^N) time
 def maxSum(arr):
     if not arr:
@@ -42,21 +39,3 @@ def maxSum3(arr):
         max_excluding_last = prev_max_including_last
 
     return max(max_including_last, max_excluding_last)
-
-
-class test(unittest.TestCase):
-    def test_1(self):
-        self.assertEqual(13, maxSum([2, 4, 6, 2, 5]))
-        self.assertEqual(10, maxSum([5, 1, 1, 5]))
-
-    def test_2(self):
-        self.assertEqual(13, maxSum2([2, 4, 6, 2, 5]))
-        self.assertEqual(10, maxSum2([5, 1, 1, 5]))
-
-    def test_3(self):
-        self.assertEqual(13, maxSum3([2, 4, 6, 2, 5]))
-        self.assertEqual(10, maxSum3([5, 1, 1, 5]))
-
-
-if __name__ == "__main__":
-    unittest.main()

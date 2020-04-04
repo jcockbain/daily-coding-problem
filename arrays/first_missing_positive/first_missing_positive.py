@@ -9,7 +9,7 @@ def first_pos(arr):
         if i not in arr:
             return i
         i += 1
-    return None
+    return 1
 
 # O(N) average case - O(N) Space
 
@@ -18,5 +18,5 @@ def first_pos2(arr):
     s = set(arr)
     i = 1
     while i in s:
-        i + 1
+        i += 1
     return i

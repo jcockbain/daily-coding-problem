@@ -1,32 +1,41 @@
 from collections import deque
 
 
-def get_neighbours(position):
-    x, y = position
-    return [(x+1, y), (x-1, y), (x, y+1), (x, y-1)]
+def can_walk(board, row, col):
+    h, w = len(board), len(board[0])
+    if row < 0 or row >= w:
+        return False
+    if col < 0 or col >= h:
+        return False
+    return not board[row][col]
+
+
+def get_valid_neighbours(board, row, col):
+    return [(r, c) for r, c in [
+        (row, col - 1),
+        (row, col + 1),
+        (row + 1, col),
+        (row - 1, col)
+    ]
+        if can_walk(board, row, col)
+    ]
 
 
 def find_route(board, start, end):
     h, w = len(board), len(board[0])
-    no_gates = set()
-    for r in range(h):
-        for c in range(w):
-            if not board[r][c]:
-                no_gates.add((r, c))
-
     explored = set()
-    q = [[start]]
+    q = deque([[start]])
 
     if start == end:
         return 0
 
     while q:
-        path = q.pop(0)
+        path = q.popleft()
         node = path[-1]
         if node not in explored:
-            all_neighbours = get_neighbours(node)
             neighbours = [
-                p for p in all_neighbours if p in no_gates and 0 <= p[0] <= h and 0 <= p[1] <= w]
+                p for p in get_valid_neighbours(board, node[0], node[1])
+            ]
             for n in neighbours:
                 new_path = list(path)
                 new_path.append(n)
